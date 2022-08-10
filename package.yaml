@@ -1,0 +1,49 @@
+name:                word-enumerator
+version:             0.1.0.0
+github:              "drwlrsn/word-enumerator"
+license:             BSD3
+author:              "Drew Larson"
+maintainer:          "me@drewlarson.ca"
+copyright:           "Copyright (c) 2022 Drew Larson"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/drwlrsn/word-enumerator#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- text
+
+library:
+  source-dirs: src
+
+executables:
+  word-enumerator-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - word-enumerator
+
+tests:
+  word-enumerator-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - word-enumerator
