@@ -47,15 +47,15 @@ main = do
   o <- execParser opts
   let fileName = optFileName o
   handle <- openFile fileName ReadMode
-  (wordCount, lineCount, charCount) <- countFileWords 0 0 0 handle
+  (wordCount, lineCount, charCount) <- countFileWords handle
   size <- hFileSize handle
   _ <- hClose handle
   putStrLn
     (getResult
     (Flags (c o) (l o) (m o) (w o))
-    (toInteger wordCount)
-    (toInteger lineCount)
-    (toInteger charCount)
+    wordCount
+    lineCount
+    charCount
     size
     fileName)
   where
