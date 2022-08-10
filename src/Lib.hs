@@ -58,7 +58,7 @@ countFileWords handle = do
   s <- hGetContents handle
   let text = DT.pack s in
     let wordCount = toInteger $ length $ DT.words text in
-      let lineCount =  DT.foldl countLineBreaks 0 text in
+      let lineCount =  DT.foldl' countLineBreaks 0 text in -- use strict version of foldl
         let charCount = DT.length text in
             pure (wordCount, lineCount, toInteger charCount)
 
