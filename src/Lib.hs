@@ -5,11 +5,15 @@ module Lib
   , tab
   ) where
 
-import qualified Data.Text as DT         
 import           Data.List                      ( intercalate )
-import           Prelude                 hiding ( null, foldl, words )
+import qualified Data.Text                     as DT
+import           Prelude                 hiding ( foldl
+                                                , null
+                                                , words
+                                                )
 import           System.IO                      ( Handle
-                                                , hGetLine, hGetContents
+                                                , hGetContents
+                                                , hGetLine
                                                 )
 import           System.IO.Error                ( catchIOError
                                                 , isEOFError
@@ -56,10 +60,10 @@ countLineBreaks n c = if c == '\n' then succ n else n
 countFileWords :: Handle -> IO (Integer, Integer, Integer)
 countFileWords handle = do
   s <- hGetContents handle
-  let text = DT.pack s in
-    let wordCount = toInteger $ length $ DT.words text in
-      let lineCount =  DT.foldl' countLineBreaks 0 text in -- use strict version of foldl
-        let charCount = DT.length text in
-            pure (wordCount, lineCount, toInteger charCount)
+  let text      = DT.pack s
+  let wordCount = toInteger $ length $ DT.words text
+  let lineCount = DT.foldl' countLineBreaks 0 text -- use strict version of foldl
+  let charCount = DT.length text
+  pure (wordCount, lineCount, toInteger charCount)
 
 
