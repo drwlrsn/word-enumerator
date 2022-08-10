@@ -1,7 +1,7 @@
 module Lib
   ( getResult
   , Flags(..)
-  , countFileWords
+  , getWordLineCharCount
   , tab
   ) where
 
@@ -57,8 +57,8 @@ getResult options wordCount lineCount charCount size fileName =
 countLineBreaks :: Integer -> Char -> Integer
 countLineBreaks n c = if c == '\n' then succ n else n
 
-countFileWords :: Handle -> IO (Integer, Integer, Integer)
-countFileWords handle = do
+getWordLineCharCount :: Handle -> IO (Integer, Integer, Integer)
+getWordLineCharCount handle = do
   s <- hGetContents handle
   let text      = DT.pack s
   let wordCount = toInteger $ length $ DT.words text

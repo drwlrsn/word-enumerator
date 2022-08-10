@@ -158,14 +158,14 @@ main = hspec $ do
                        , fileName
                        ]
 
-    describe "countFileWords" $ do
+    describe "getWordLineCharCount" $ do
       it "should handle non-english" $ do
         handle <- openFile "test/data/test1.txt" ReadMode
-        actual <- countFileWords handle
+        actual <- getWordLineCharCount handle
         actual `shouldBe` (3, 1, 11)
       it "should handle non-english with empty last line" $ do
         handle <- openFile "test/data/test2.txt" ReadMode
-        actual <- countFileWords handle
+        actual <- getWordLineCharCount handle
         actual `shouldBe` (3, 0, 10)
 
 -- it "should handle -l" $ do
